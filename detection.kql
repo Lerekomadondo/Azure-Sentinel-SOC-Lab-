@@ -1,0 +1,20 @@
+Event
+| where EventID == 4625
+| where TimeGenerated > ago(24h)
+| extend X = parse_xml(EventData)
+| extend Data = X.DataItem.EventData.Data
+| mv-apply d = Data on (
+    summarize
+        SourceIP = take_anyif(
+            tostring(d["#text"]),
+            tostring(d["@Name"]) =~ "IpAddress"
+        ),
+        TargetUsername = take_anyif(
+            tostring(d["#text"]),
+            tostring(d["@Name"]) =~ "TargetUserName"
+        )
+)
+| summarize
+    FailedLogons = count()
+    by Computer, SourceIP, TargetUsername, bin(TimeGenerated, 5m)
+| where FailedLogons >= 3
