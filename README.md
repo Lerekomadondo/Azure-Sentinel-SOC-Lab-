@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project demonstrates the use of Microsoft Azure and Microsoft Sentinel to monitor Windows security events and detect repeated failed logon attempts. It was developed as a hands-on cloud security lab to practise security monitoring, threat detection, and incident investigation.
+Built a cloud-based security monitoring lab using Microsoft Sentinel, Azure Monitor Agent, and Log Analytics. Developed a KQL detection query to identify repeated Windows failed logon attempts, configured analytics rules and entity mappings, and verified incident generation with source IP and account details.
 
 ## Objectives
 
