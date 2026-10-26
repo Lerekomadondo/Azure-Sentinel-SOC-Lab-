@@ -42,15 +42,14 @@ See [`detection.kql`](detection.kql) for the query.
 
 ### 1. Detection Query
 
-![KQL detection query](screenshots/detection-query.png)
+![KQL detection query](detection-query.png)
 
 ### 2. Log Results
 
-![Failed logon log results](screenshots/log-results.png)
-
+![Failed logon log results](log-results.png)
 ### 3. Incident Evidence
 
-![Microsoft Sentinel incident details](screenshots/incident-evidence.png)
+![Microsoft Sentinel incident details](incident-evidence.png)
 
 ## Skills Demonstrated
 
