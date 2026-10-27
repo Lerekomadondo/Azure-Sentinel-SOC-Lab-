@@ -23,9 +23,9 @@ This project uses Microsoft Azure and Microsoft Sentinel to monitor Windows secu
 
 ### Detection Logic
 
-The detection monitors Windows Event ID 4625 and flags three or more failed logons from the same computer and source IP within five minutes.
+The detection identified three failed logon attempts (Event ID 4625) within a five-minute window in the Windows Security event logs. This met the rule threshold and generated an incident in Microsoft Sentinel.
 
-The threshold helps identify repeated login failures while limiting alerts from isolated mistakes. Mistyped passwords and expired service-account credentials may cause false positives. In production, I would tune the threshold based on normal activity.
+The available results did not establish the source of the attempts, the targeted account, or whether a successful logon followed. Further investigation would be needed to determine whether the activity was malicious or legitimate.
 
 Limitation: Failed logons alone do not confirm a brute-force attack or account compromise.
 
@@ -42,9 +42,9 @@ See [`detection.kql`](detection.kql) for the query.
 
 ### Investigation Findings
 
-The query identified three failed logon attempts within a five-minute window. This activity was flagged for further investigation. Failed logons alone do not confirm a brute-force attack.
+The investigation identified repeated failed logon attempts (Event ID 4625) in the Windows Security event logs. Three failed attempts occurred within a five-minute window, meeting the detection threshold configured in Microsoft Sentinel. The activity was generated in a controlled lab environment to validate the detection.
 
-Next steps include investigating the source IP and target account, checking for subsequent successful logons, and determining whether the activity is legitimate or malicious
+The rule flagged the activity as potentially suspicious authentication behaviour and created an incident. The findings demonstrate how Sentinel and KQL can identify repeated logon failures and support further investigation using the source IP address, targeted account, and any subsequent successful logon events.
 
 
 
