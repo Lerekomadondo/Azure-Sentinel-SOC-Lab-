@@ -40,6 +40,13 @@ See [`detection.kql`](detection.kql) for the query.
 5. Configured IP address and account entity mappings.
 6. Reviewed the resulting security incident and its available entities.
 
+### Investigation Findings
+
+The query identified three failed logon attempts within a five-minute window. This activity was flagged for further investigation. Failed logons alone do not confirm a brute-force attack.
+
+Next steps include investigating the source IP and target account, checking for subsequent successful logons, and determining whether the activity is legitimate or malicious
+
+
 ### MITRE ATT&CK Mapping
  
 - **Tactic:** Credential Access
