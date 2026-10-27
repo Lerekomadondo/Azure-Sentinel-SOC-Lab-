@@ -61,14 +61,15 @@ Next steps include investigating the source IP and target account, checking for 
 
 ### Evidence
 
-### 1. KQL Detection Query
+#### 1. KQL Detection Query
 
 ![KQL detection query](detection-query.png)
 
-### 2. Log Results
+#### 2. Log Results
 
 ![Failed logon log results](log-results.png)
-### 3. Incident Evidence
+
+#### 3. Incident Evidence
 
 ![Microsoft Sentinel incident details](incident-evidence.png)
 
