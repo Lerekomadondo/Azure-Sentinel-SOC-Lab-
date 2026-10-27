@@ -53,9 +53,11 @@ Next steps include investigating the source IP and target account, checking for 
 - **Technique:** [T1110 — Brute Force](https://attack.mitre.org/techniques/T1110/)
 - **Purpose:** Identify repeated failed logon attempts that may indicate brute-force activity.
 
+- ![MITRE ATT&CK Mapping](screenshots/mitre-attack-mapping.png)
+
 ### Evidence
 
-### 1. Detection Query
+### 1. KQL Detection Query
 
 ![KQL detection query](detection-query.png)
 
