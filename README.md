@@ -23,9 +23,11 @@ This project uses Microsoft Azure and Microsoft Sentinel to monitor Windows secu
 
 ### Detection Logic
 
-The detection query analyses Windows Event ID `4625`, which represents a failed logon attempt. It extracts the source IP address and target username from the event data, groups events into five-minute intervals, and identifies groups with three or more failed attempts.
+The detection monitors Windows Event ID 4625 and flags three or more failed logons from the same computer and source IP within five minutes.
 
-The analytics rule is configured to run every five minutes and examine the previous ten minutes of data.
+The threshold helps identify repeated login failures while limiting alerts from isolated mistakes. Mistyped passwords and expired service-account credentials may cause false positives. In production, I would tune the threshold based on normal activity.
+
+Limitation: Failed logons alone do not confirm a brute-force attack or account compromise.
 
 See [`detection.kql`](detection.kql) for the query.
 
@@ -37,6 +39,12 @@ See [`detection.kql`](detection.kql) for the query.
 4. Created a Microsoft Sentinel analytics rule to identify repeated failed logon attempts.
 5. Configured IP address and account entity mappings.
 6. Reviewed the resulting security incident and its available entities.
+
+### MITRE ATT&CK Mapping
+ 
+- **Tactic:** Credential Access
+- **Technique:** [T1110 — Brute Force](https://attack.mitre.org/techniques/T1110/)
+- **Purpose:** Identify repeated failed logon attempts that may indicate brute-force activity.
 
 ### Evidence
 
@@ -60,6 +68,11 @@ See [`detection.kql`](detection.kql) for the query.
 - Entity mapping
 - Security incident investigation
 - Cloud security fundamentals
+
+
+### Cost Management and Cleanup
+
+I deallocate the Azure virtual machine when it is not in use to reduce compute costs. I also monitor Azure spending and remove temporary lab resources when testing is complete. Log Analytics and Microsoft Sentinel may still incur charges while the VM is deallocated.
 
 ### Disclaimer
 
